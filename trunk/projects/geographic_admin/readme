@@ -1,0 +1,58 @@
+
+== Geographic Admin ==
+
+=== Overview ===
+
+This directory provides a sample project called 'geographic_admin' with an application called 'world'.
+
+It highlights the Admin and Databrowse contrib applications spatially enabled with an OpenLayers map
+interface and OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile
+from www.thematicmapping.com in WGS 84 projection (EPSG:4326).
+
+=== Dependencies ===
+
+PostgreSQL
+PostGIS (with srid 900913)
+Pycopg2
+GEOS
+Proj.4
+GDAL
+Internet Connection (for Openlayers JS)
+
+* See http://code.djangoproject.com/wiki/GeoDjangoInstall for more info
+
+=== Step 1 ===
+Make sure that django is on your PYTHONPATH.
+$ python
+>>> import django # should cause no errors
+
+=== Step 2 ===
+
+Run through these steps to enable to application:
+
+1. Create a postgis enabled database called geographic_admin
+ ie. $ createdb -T template_postgis -U postgres geographic_admin
+ * Note: the load_data.py script will attempt to add the google mercator projection. If you do not rely on this script to load data you will need to load the google projection into your database if you do not already have it within your template postgis database. This projection is found in the utilities folder and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
+
+2. Set your postgres user and password in settings.py
+
+3. Create your database schema
+ a. First test what creation will look like with:
+  ./manage.py sqlall world
+ 
+ b. Then actually create your tables with:
+ ./manage.py syncdb
+ * say yes to the prompt to create a superuser (this will be your Admin login)
+ 
+5. Test your blank application by running the development server
+ ./manage.py runserver
+ ...then go to http://localhost:8000/
+ ...quit with ctrl -c
+ 
+6. Load the sample data
+ $ python load_data.py
+
+7. Run the server again and enjoy testing out the Admin and Databrowse
+ ./manage.py runserver
+
+
