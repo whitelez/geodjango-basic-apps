@@ -164,9 +164,9 @@ Q: What version of Django do I need to use to get !GeoDjango?
 
 A: As of August 5th, !GeoDjango can be found in SVN trunk within the contrib/gis folder. Download a checkout of svn trunk or wait for the Django 1.0 release.
 
-Q: Okay, so this is a full example project, but is there a tutorial on how to add GeoDjango functinality to my existing application
+Q: Okay, so this is a full example project, but is there a tutorial on how to add !GeoDjango functionality to my existing application?
 
-A: No, not yet. But, in generate to enable GeoDjango within any of your existing Django Projects you must start by adding 'django.contrib.gis' to your installed apps', then override the default manager, and import your geometry fields from django.contrib.gis.db
+A: No, not yet. But, in general to enable !GeoDjango within any of your existing Django Projects you must start by adding 'django.contrib.gis' to your INSTALLED_APPS setting, override the default manager on your models, and then import your geometry fields from django.contrib.gis.db. Then you will have the !GeoDjango methods available on your models and you can play around with the new api features. 
 
 
 TODO...
