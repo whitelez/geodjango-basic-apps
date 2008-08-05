@@ -18,6 +18,9 @@ DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
+# Not used at this point but you'll need it here if you 
+# want to enable a google maps baselayer within your
+# OpenLayers maps
 GOOGLE_MAPS_API_KEY='abcdefg'
 
 GIS_DATA_DIR = os.path.join(GEOGRAPHIC_ADMIN_DIR, 'data')
