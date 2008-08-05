@@ -11,7 +11,7 @@ The project code highlights how to spatially enable the the Admin and Databrowse
 
  * This project should be a useful place to start if you are familiar with Django but new to !GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
 
- * The biggest challenge for users new to GIS with be installing the dependencies of GEOS and GDAL 
+ * The biggest challenge for users new to GIS will be installing the dependencies of GEOS and GDAL. If you have trouble feel free to drop into the #geodjango room on freenode IRC.
 
 === Dependencies for !GeoDjango ===
 
