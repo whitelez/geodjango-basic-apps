@@ -57,12 +57,12 @@ Set your postgres user and password in settings.py
 Create your database schema
  a. First test what creation will look like with:
 {{{
-python manage.py sqlall world
+$ python manage.py sqlall world
 }}}
  
  b. Then actually create your tables with:
 {{{
-python manage.py syncdb
+$ python manage.py syncdb
 #say yes to the prompt to create a superuser (this will be your Admin login)
 }}}
 
@@ -70,7 +70,7 @@ python manage.py syncdb
 
 Test your blank application by running the development server
 {{{
- python manage.py runserver
+$ python manage.py runserver
 # ...then go to http://localhost:8000/
 #...quit with ctrl -c
 }}}
@@ -83,7 +83,9 @@ $ python load_data.py
 === Step 8 ===
 
 Run the server again and enjoy testing out the Admin and Databrowse
- ./manage.py runserver
+{{{
+$ python manage.py runserver
+}}}
 
 
 = FAQ =
