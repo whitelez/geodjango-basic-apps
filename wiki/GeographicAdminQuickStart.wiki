@@ -34,10 +34,14 @@ Install Django from Trunk:
 svn co http://code.djangoproject.com/svn/django/trunk/ django-svn-trunk
 }}}
 
-Make sure that django is on your PYTHONPATH.
+Make sure that Django is on your PYTHONPATH.
 {{{
-$ export PYTHONPATH=/path/to/the/geographic_admin/django-svn-trunk:
+$ export PYTHONPATH=/path/to/django-svn-trunk:
 # or put that in your .bash_profile (environment settings)
+}}}
+
+Test that Django can be found on PYTHONPATH
+{{{
 $ python
 >>> import django # should cause no errors
 }}}
@@ -49,6 +53,7 @@ Download the Geographic Admin project [http://code.google.com/p/geodjango-basic-
 $ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin
 $ cd geographic_admin # your new project directory
 }}}
+ * Note: this project settings uses dynamic paths so your shouldn't need to put the project folder on your PYTHONPATH
 
 === Step 3 ===
 
