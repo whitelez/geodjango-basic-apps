@@ -29,8 +29,15 @@ The project code highlights how to spatially enable the the Admin and Databrowse
 
 === Step 1 ===
 
+Install Django from Trunk:
+{{{
+svn co http://code.djangoproject.com/svn/django/trunk/ django-svn-trunk
+}}}
+
 Make sure that django is on your PYTHONPATH.
 {{{
+$ export PYTHONPATH=/path/to/the/geographic_admin/django-svn-trunk:
+# or put that in your .bash_profile (environment settings)
 $ python
 >>> import django # should cause no errors
 }}}
@@ -38,6 +45,10 @@ $ python
 === Step 2 ===
 
 Download the Geographic Admin project [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin directory] to your desired location on your local filesystem.
+{{{
+$ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin
+$ cd geographic_admin # your new project directory
+}}}
 
 === Step 3 ===
 
@@ -58,12 +69,44 @@ Create your database schema
  a. First test what creation will look like with:
 {{{
 $ python manage.py sqlall world
+# if you get an error that says: 
+# ImportError: No module named django.core.management
+# then go back to Step 1!
+}}}
+
+ You should get the table creation SQL output with special OpenGIS geometry hooks:
+{{{
+BEGIN;
+CREATE TABLE "world_worldborders" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "name" varchar(50) NOT NULL,
+    "area" integer NOT NULL,
+    "pop2005" integer NOT NULL,
+    "fips" varchar(2) NOT NULL,
+    "iso2" varchar(2) NOT NULL,
+    "iso3" varchar(3) NOT NULL,
+    "un" integer NOT NULL,
+    "region" integer NOT NULL,
+    "subregion" integer NOT NULL,
+    "lon" numeric(8, 3) NOT NULL,
+    "lat" numeric(7, 3) NOT NULL
+)
+;
+SELECT AddGeometryColumn('world_worldborders', 'geometry', 4326, 'MULTIPOLYGON', 2);
+ALTER TABLE "world_worldborders" ALTER "geometry" SET NOT NULL;
+CREATE INDEX "world_worldborders_geometry_id" ON "world_worldborders" USING GIST ( "geometry" GIST_GEOMETRY_OPS );
+COMMIT;
 }}}
  
  b. Then actually create your tables with:
 {{{
 $ python manage.py syncdb
 #say yes to the prompt to create a superuser (this will be your Admin login)
+}}}
+
+ * Make sure in the syncdb output you see the line:
+{{{
+Installing custom SQL for world.WorldBorders model
 }}}
 
 === Step 6 ===
@@ -74,12 +117,33 @@ $ python manage.py runserver
 # ...then go to http://localhost:8000/
 #...quit with ctrl -c
 }}}
+
+if you are installing on a remote server and want to view via the web:
+{{{
+$ python manage.py runserver 0.0.0.0:8000
+# ...then go to http://your_domain_name:8000/
+}}}
+
 === Step 7 ===
 
 Load the sample data
 {{{
 $ python load_data.py
 }}}
+ * This should output the countries loaded if successful:
+{{{
+[...]
+Saved: Falkland Islands (Malvinas)
+Saved: Micronesia, Federated States of
+Saved: French Polynesia
+Saved: France
+Saved: Gambia
+Saved: Gabon
+Saved: Georgia
+Saved: Ghana
+[...]
+}}}
+
 === Step 8 ===
 
 Run the server again and enjoy testing out the Admin and Databrowse
@@ -88,6 +152,11 @@ $ python manage.py runserver
 }}}
 
 
+
 = FAQ =
 
-TODO
+Q: What version of Django do I need to use to get GeoDjango?
+
+A: As of August 5th, GeoDjango can be found in SVN trunk within the contrib/gis folder. Download a checkout of svn trunk or wait for the Django 1.0 release
+
+TODO...
