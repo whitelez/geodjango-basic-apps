@@ -1,17 +1,24 @@
+# views.py
+
 from django.conf import settings
 from django.template import Template, Context
 from django.http import HttpResponse
 
+# Altert: non-standard view code (just a custom hack for this demo welcome page
+# inspired by the standard Django welcome page)
 
 def welcome(request):
-    "Create an empty URLconf 404 error response."
+    """
+    
+    Create a Welcome Page for GeoDjango with Template as a string
+    
+    """
     if 'django.contrib.gis' in settings.INSTALLED_APPS:
         t = Template(WELCOME, name='Geodjango Welcome')
         c = Context({
             'project_name': settings.SETTINGS_MODULE.split('.')[0]
         })
         return HttpResponse(t.render(c), mimetype='text/html')
-
 
 WELCOME = """
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
