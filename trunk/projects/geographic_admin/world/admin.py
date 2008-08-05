@@ -14,14 +14,16 @@ from django.contrib.gis.admin import OSMGeoAdmin
 # Note, another simplier manager that does not reproject the data on OpenStreetMap is available
 # with from `django.contrib.gis.admin import GeoModelAdmin`
 
-# Import the Databrowse app so we can register our models to display via the Databrowse
-from django.contrib import databrowse
-databrowse.site.register(WorldBorders)
-
 # Finally, import our model from the working project
 # the geographic_admin folder must be on your python path
 # for this import to work correctly
 from world.models import WorldBorders
+
+# Import the Databrowse app so we can register our models to display via the Databrowse
+from django.contrib import databrowse
+databrowse.site.register(WorldBorders)
+
+
 
 class WorldBordersAdmin(OSMGeoAdmin):
     """
