@@ -1,58 +1,93 @@
-
-== Geographic Admin ==
+= Geographic Admin =
+Getting started with the Geographic Admin Project
 
 === Overview ===
 
-This directory provides a sample project called 'geographic_admin' with an application called 'world'.
+This [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin Download] provides a sample project called 'geographic_admin' with an application called 'world'.
 
-It highlights the Admin and Databrowse contrib applications spatially enabled with an OpenLayers map
-interface and OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile
-from www.thematicmapping.com in WGS 84 projection (EPSG:4326).
+It is meant to be a boilerplate, but fully-baked, hello world example that highlights a few of the most easily enabled !GeoDjango features. 
 
-=== Dependencies ===
+The project code highlights how to spatially enable the the Admin and Databrowse contrib applications with an !OpenLayers map interface and !OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile from [www.thematicmapping.com Thematic Mapping Blog] in WGS 84 projection (EPSG:4326).
 
-PostgreSQL
-PostGIS (with srid 900913)
-Pycopg2
-GEOS
-Proj.4
-GDAL
-Internet Connection (for Openlayers JS)
+ * This project should be a useful place to start if you are familiar with Django but new to !GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
 
-* See http://code.djangoproject.com/wiki/GeoDjangoInstall for more info
+ * The biggest challenge for users new to GIS will be installing the dependencies of GEOS and GDAL. If you have trouble feel free to drop into the #geodjango room on freenode IRC.
+
+=== Dependencies for !GeoDjango ===
+
+ * PostgreSQL
+ * PostGIS (with spatial_ref_sys entry for srid 900913)
+ * Psycopg2
+ * GEOS
+ * Proj.4
+ * GDAL
+ * Internet Connection (for !OpenLayers JS and !OpenStreetMap tiles)
+
+* See http://code.djangoproject.com/wiki/GeoDjangoInstall for all installation details.
+
+== Steps to Run Geographic Admin  ==
 
 === Step 1 ===
+
 Make sure that django is on your PYTHONPATH.
+{{{
 $ python
 >>> import django # should cause no errors
+}}}
 
 === Step 2 ===
 
-Run through these steps to enable to application:
+Download the Geographic Admin project [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin directory] to your desired location on your local filesystem.
 
-1. Create a postgis enabled database called geographic_admin
- ie. $ createdb -T template_postgis -U postgres geographic_admin
- * Note: the load_data.py script will attempt to add the google mercator projection. If you do not rely on this script to load data you will need to load the google projection into your database if you do not already have it within your template postgis database. This projection is found in the utilities folder and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
+=== Step 3 ===
 
-2. Set your postgres user and password in settings.py
+Create a postgis enabled database called geographic_admin
+{{{
+# This is an example using an existing postgis-enabled db called `template_postgis`
+$ createdb -T template_postgis -U postgres geographic_admin
+}}}
+ * Note: the load_data.py script (see Step 7 below) will attempt to add the google mercator projection, which is not available by default in the spatial_ref_sys table provided by PostGIS. If you do not rely on this script to load data you will need to add the google projection into your database if you do not already have it within your template postgis database. This projection is found in the [http://geodjango-basic-apps.googlecode.com/svn-history/r2/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
 
-3. Create your database schema
+=== Step 4 ===
+
+Set your postgres user and password in settings.py
+
+=== Step 5 ===
+
+Create your database schema
  a. First test what creation will look like with:
-  ./manage.py sqlall world
+{{{
+$ python manage.py sqlall world
+}}}
  
  b. Then actually create your tables with:
- ./manage.py syncdb
- * say yes to the prompt to create a superuser (this will be your Admin login)
- 
-5. Test your blank application by running the development server
- ./manage.py runserver
- ...then go to http://localhost:8000/
- ...quit with ctrl -c
- 
-6. Load the sample data
- $ python load_data.py
+{{{
+$ python manage.py syncdb
+#say yes to the prompt to create a superuser (this will be your Admin login)
+}}}
 
-7. Run the server again and enjoy testing out the Admin and Databrowse
- ./manage.py runserver
+=== Step 6 ===
+
+Test your blank application by running the development server
+{{{
+$ python manage.py runserver
+# ...then go to http://localhost:8000/
+#...quit with ctrl -c
+}}}
+=== Step 7 ===
+
+Load the sample data
+{{{
+$ python load_data.py
+}}}
+=== Step 8 ===
+
+Run the server again and enjoy testing out the Admin and Databrowse
+{{{
+$ python manage.py runserver
+}}}
 
 
+= FAQ =
+
+TODO
