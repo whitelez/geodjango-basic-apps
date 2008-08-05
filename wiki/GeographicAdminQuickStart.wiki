@@ -5,15 +5,15 @@ Getting started with the Geographic Admin Project
 
 This [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin Download] provides a sample project called 'geographic_admin' with an application called 'world'.
 
-It is meant to be a boilerplate, but fully-baked, hello world example that highlights a few of the most easily enabled GeoDjango features. 
+It is meant to be a boilerplate, but fully-baked, hello world example that highlights a few of the most easily enabled !GeoDjango features. 
 
-The project code highlights how to spatially enable the the Admin and Databrowse contrib applications with an OpenLayers map interface and OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile from [www.thematicmapping.com Thematic Mapping Blog] in WGS 84 projection (EPSG:4326).
+The project code highlights how to spatially enable the the Admin and Databrowse contrib applications with an !OpenLayers map interface and !OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile from [www.thematicmapping.com Thematic Mapping Blog] in WGS 84 projection (EPSG:4326).
 
- * This project should be a useful place to start if you are familiar with Django but new to GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
+ * This project should be a useful place to start if you are familiar with Django but new to !GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
 
  * The biggest challenge for users new to GIS with be installing the dependencies of GEOS and GDAL 
 
-=== Dependencies for GeoDjango ===
+=== Dependencies for !GeoDjango ===
 
  * PostgreSQL
  * PostGIS (with spatial_ref_sys entry for srid 900913)
@@ -21,7 +21,7 @@ The project code highlights how to spatially enable the the Admin and Databrowse
  * GEOS
  * Proj.4
  * GDAL
- * Internet Connection (for Openlayers JS and OpenStreetMap tiles)
+ * Internet Connection (for !OpenLayers JS and !OpenStreetMap tiles)
 
 * See http://code.djangoproject.com/wiki/GeoDjangoInstall for all installation details.
 
