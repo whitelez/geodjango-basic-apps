@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # To run this as a script you must set the Django settings file
 # as an environment setting before importing LayerMapping
 # Alternatively you can place 
