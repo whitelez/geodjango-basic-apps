@@ -1,0 +1,59 @@
+#labels Featured
+= GeoIP = 
+Steps to setup and configure the GeoIP project
+
+This [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geoip Download] provides a sample project called 'geoip' with an application called 'whereami'.
+
+It it designed to highlight the mapping of users based on external IP address using the [http://www.maxmind.com/ GeoIP] library, and and integrated connivence utility from within !GeoDjango.
+
+=== Dependencies for !GeoIP ===
+
+ * Dummy database
+ * GeoIP C libary and python bindings
+
+== Steps to run the GeoIP project  ==
+
+=== Step 1 ===
+Install the GeoIP C library and python api: http://www.maxmind.com/app/python
+
+$ wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz
+$ tar xvf GeoIP-1.4.4.tar.gz
+$ cd GeoIP-1.4.4
+$ ./configure
+$ make
+$ sudo make install
+
+$ wget http://www.maxmind.com/download/geoip/api/python/GeoIP-Python-1.2.2.tar.gz
+$ tar xvf GeoIP-Python-1.2.2.tar.gz
+$ cd GeoIP-Python-1.2.2
+$ python setup.py install
+
+# if on linux, run:
+$ ldconfig # and confirm that 'usr/local/lib' is in /etc/ld.so.conf
+
+=== Step 2 ===
+Download Maxmind GeoLiteCity.dat: http://www.maxmind.com/download/geoip/database/
+
+$ wget http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+$ gzip -d GeoLiteCity.dat.gz
+
+=== Step 3 ===
+Extract or copy the .dat file to the `data` dir and confirm that the GEOIP_LOCATION in settings.py points to this directory (absolute or relative).
+
+=== Step 4 ===
+Create your database and modify settings appropriately
+* Note: a database is not used for this app, but geodjango requires that the setting and database exist
+
+=== Step 5 ===
+python manage.py runserver
+
+=== Step 6 ===
+To run remotely you'll need to sign up for a free Google Maps API key and use it to fill in the value for the GOOGLE_MAPS_API_KEY setting in settings.py.
+
+
+
+
+
+
+
+
