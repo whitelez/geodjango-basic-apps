@@ -97,7 +97,7 @@ WELCOME = """
   <p><b>{{project_name|capfirst}}</b> allows for the quick and dirty geocoding of remote/external IP addresses</p>
   <ul>
     <li>Visit <b><a href="whereami/">/whereami</a></b> to see your geocoded location (if you are running localhost your external IP will be fetched).</li>
-    <li>The <b>/whereis</b> view allows you to manually enter various external IP addresses to test where they are. Try yours first: <a href="/whereis/{{ my_ip }}/">http://localhost:8000/whereis/45.231.39.76</a></li>
+    <li>The <b>/whereis</b> view allows you to manually enter various external IP addresses to test where they are. Try yours first: <a href="/whereis/{{ my_ip }}/">/whereis/{{ my_ip }}/</a></li>
   </ul>
 </div>
 
