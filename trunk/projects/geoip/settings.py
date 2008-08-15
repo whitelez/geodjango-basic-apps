@@ -90,7 +90,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
-    # If GeoDjango is added here it requires a database settings
+    # If GeoDjango is added here it requires database settings
     #'django.contrib.gis',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
