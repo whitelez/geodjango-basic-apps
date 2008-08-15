@@ -39,7 +39,7 @@ MEDIA_URL = '/media/'
 
 ADMIN_MEDIA_PREFIX = '/media/'
 
-SECRET_KEY = 'g#iu)v^=0f##w-xu5@=-x#np7fvamw5jdagr4!e0n7jach!q2a'
+SECRET_KEY = '2f!vq4!f)u#g-sk7_=z+i0e(o0o&hue5khxbdkdx$f%hvpb^vd'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
