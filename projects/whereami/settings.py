@@ -52,7 +52,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '3s&m35+frucwcablxakyh$v4ny9p5t#7ljkw=2z#plbrsr(vjv'
+SECRET_KEY = '2f!vq4!f)u#g-sk7_=z+i0e(o0o&hue5khxbdkdx$f%hvpb^vd'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'dominos.urls'
 
 TEMPLATE_DIRS = (
-    "/home/dmcgettigan/dominos/templates"
+    "/path/to/your/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
