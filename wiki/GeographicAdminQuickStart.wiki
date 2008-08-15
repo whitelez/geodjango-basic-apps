@@ -14,7 +14,7 @@ The project code highlights how to spatially enable the the Admin and Databrowse
 
  * The biggest challenge for users new to GIS will be installing the dependencies of GEOS and GDAL. If you have trouble feel free to drop into the #geodjango room on freenode IRC.
 
-=== Dependencies for !GeoDjango ===
+=== Dependencies for !GeographicAdmin ===
 
  * PostgreSQL
  * PostGIS (with spatial_ref_sys entry for srid 900913)
