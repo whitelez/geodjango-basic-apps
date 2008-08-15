@@ -8,7 +8,6 @@ It it designed to highlight the mapping of users based on an external IP address
 
 === Dependencies for GeoIP ===
 
- * Dummy database
  * GeoIP C libary and python bindings
 
 == Steps to run the GeoIP project  ==
@@ -47,17 +46,9 @@ $ gzip -d GeoLiteCity.dat.gz
 Extract or copy the .dat file to the `data` dir and confirm that the GEOIP_LOCATION in settings.py points to this directory (absolute or relative).
 
 === Step 4 ===
-Create your database and modify settings.py appropriately
- * Note: a database is not used for this app, but geodjango requires that the setting and database exist
-
-=== Step 5 ===
 {{{
 python manage.py runserver
 }}}
 
-=== Step 6 ===
+=== Step 5 ===
 To run remotely you'll need to sign up for a free Google Maps API key and use it to fill in the value for the GOOGLE_MAPS_API_KEY setting in settings.py.
-
-
-
-
