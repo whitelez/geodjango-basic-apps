@@ -24,7 +24,7 @@ WELCOME = """
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="robots" content="NONE,NOARCHIVE"><title>Welcome to Django</title>
+  <meta name="robots" content="NONE,NOARCHIVE"><title>Welcome to GeoDjango</title>
   <style type="text/css">
     html * { padding:0; margin:0; }
     body * { padding:10px 20px; }
@@ -52,20 +52,20 @@ WELCOME = """
 <body>
 <div id="summary">
   <h1>Welcome!</h1>
-  <h2>Congratulations on your first GeoDjango-powered project: <u>{{project_name}}</u></h2>
+  <h2>Congratulations on your GeoDjango-powered project: <u>{{ project_name|capfirst }}</u></h2>
 </div>
 
 <div id="instructions">
-  <p>There are two basic parts of <b>{{project_name}}</b> that have been spatially enabled</p>
+  <p>There are two basic parts of <b>{{ project_name|capfirst }}</b> that spatially enable Django Contrib Apps</p>
   <ul>
-    <li>The <a href="admin/"> Administration Application</a> which allows trusted users to manage, edit, and modify all your data via a customizable OpenLayers interface.</li>
-    <li>The <a href="databrowse/">Databrowse</a> which allows all your data models to be publically browsed and will display your geometry fields using an OpenLayers map with custom format serialization.</li>
+    <li>The <a href="admin/"> Administration Application</a> which allows trusted users to manage, edit, and modify all your data now has a customizable OpenLayers interface.</li>
+    <li>The <a href="databrowse/">Databrowse</a> which allows all your data models to be publically browsed now can display your geometry fields using an OpenLayers map with custom format serialization.</li>
   </ul>
 </div>
 
 <div id="explanation">
   <p>
-    After investigating the usefulness of these two 'free' applications, the next step will be to start writing your own custom apps with new views of your data.
+    After investigating the usefulness of these two 'free' contrib applications extended by GeoDjango, your next step might be to start writing your own custom views of your data using GeoDjango `GeoQuerySets` and lookup types.
   </p>
 </div>
 </body></html>
