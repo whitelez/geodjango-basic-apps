@@ -12,12 +12,13 @@ The project code highlights how to spatially enable the the Admin and Databrowse
 
  * This project should be a useful place to start if you are familiar with Django but new to !GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
 
- * The biggest challenge for users new to GIS will be installing the dependencies of GEOS and GDAL. If you have trouble feel free to drop into the #geodjango room on freenode IRC to ask questions. If you get frustrated with these installations, you are not alone. They are core libraries for the GIS community and even seasoned GIS developers can run into tricky installation issues. What is amazing about GeoDjango is how easy they are to use, once you get them installed.
+ * The biggest challenge for users new to GIS will be installing the dependencies of GEOS and GDAL. If you have trouble feel free to drop into the #geodjango room on freenode IRC to ask questions. If you get frustrated with these installations, you are not alone. They are core libraries for the GIS community and even seasoned GIS developers can run into tricky installation issues. What is amazing about !GeoDjango is how easy they are to use, once you get them installed.
 
 === Dependencies for !GeographicAdmin ===
 
+ * Django Trunk or >=1.0 betas
  * PostgreSQL
- * PostGIS (with spatial_ref_sys entry for srid 900913)
+ * PostGIS
  * Psycopg2
  * GEOS
  * Proj.4
@@ -34,6 +35,7 @@ Install Django from Trunk:
 {{{
 svn co http://code.djangoproject.com/svn/django/trunk/ django-svn-trunk
 }}}
+Or grab the latest > 1.0 release from: http://www.djangoproject.com/download/
 
 Make sure that Django is on your PYTHONPATH.
 {{{
@@ -47,14 +49,27 @@ $ python
 >>> import django # should cause no errors
 }}}
 
+Confirm your Django import location (watch out for multiple installations):
+{{{
+>>> django.__file__
+'/Users/spring/src/django-svn-trunk/django/__init__.py'
+# confirm that is the path to Django Svn Trunk or the >=1.0 release dir
+}}}
+
 === Step 2 ===
 
 Download the Geographic Admin project [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin directory] to your desired location on your local filesystem.
+
+
+
 {{{
 $ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin
 $ cd geographic_admin # your new project directory
 }}}
- * Note: this project's settings uses dynamic paths so you shouldn't need to put the project folder on your PYTHONPATH
+
+ * Note: this project does not include the project name (only the app name) in any of the code, therefore maintaining a more flexible design approach. See Malcolm Tredinnick's post on [http://www.pointy-stick.com/blog/2007/11/09/django-tip-developing-without-projects/ 'Developing Without Projects'] for background on this approach.
+
+ * Also, this project's settings uses dynamic paths so you shouldn't need to put the project folder on your PYTHONPATH. The development server (`python manage.py runserver`) will handle assigning the needed paths at startup.
 
 === Step 3 ===
 
@@ -63,6 +78,55 @@ Create a postgis enabled database called geographic_admin
 # This is an example using an existing postgis-enabled db called `template_postgis`
 $ createdb -T template_postgis -U postgres geographic_admin
 }}}
+
+If you are creating your first PostGIS database, create a template like so:
+{{{
+# Switch to the default postgres users
+sudo su - postgres
+# Create a database with UTF encoding
+createdb -E UTF8 -O postgres -U postgres template_postgis
+# now you can switch back to your normal user
+exit
+# Load any required langauge for postgis
+createlang plpgsql -d template_postgis -U postgres
+# Load optional languages
+createlang plpythonu -d template_postgis -U postgres
+createlang plr -d template_postgis -U postgres
+# Load postgis functions and spatial reference info
+# which likely was installed in the postgres share directory
+pg_config --sharedir
+/usr/local/pgsql/share
+# Also look for lwpostgis.sql and spatial_ref_sys.sql in:
+ls /usr/share/ # or /usr/local/share/
+psql -d template_postgis -U postgres -f /usr/share/lwpostgis.sql
+# Note: ignore any NOTICES, like 'psql:/usr/share/lwpostgis.sql:44: NOTICE:  type "histogram2d" is not yet defined'
+# You should see output like:
+BEGIN
+CREATE FUNCTION
+CREATE OPERATOR
+CREATE TYPE
+CREATE AGGREGATE
+COMMIT
+# Then load the geographic projection table
+psql -d template_postgis -U postgres -f /usr/share/spatial_ref_sys.sql
+
+# if you get an error about not being able to find  `geos` add:
+/usr/local/lib to /etc/ld.so.conf
+# And run:
+ldconfig # Then restart PostgreSQL
+
+#
+## From then on create a PostGIS database like:
+#
+createdb -U postgres -T template_postgis DB_NAME
+}}}
+
+#
+## From then on create a PostGIS database like:
+#
+createdb -U postgres -T template_postgis DB_NAME
+
+
  * Note: the load_data.py script (see Step 7 below) will attempt to add the google mercator projection, which is not available by default in the spatial_ref_sys table provided by PostGIS. If you do not rely on this script to load data you will need to add the google projection into your database if you do not already have it within your template postgis database. This projection is found in the [http://geodjango-basic-apps.googlecode.com/svn-history/r2/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
 
 === Step 4 ===
