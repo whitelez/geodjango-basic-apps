@@ -14,6 +14,8 @@ http://geodjango-basic-apps.googlecode.com/svn/images/geoip_whereami.png
 === Dependencies for GeoIP ===
 
  * GeoIP C libary and python bindings
+ * Note, *no database is needed* for this app and there is no models.py file
+  * Therefore, *do not* put `django.contrib.gis` in your INSTALLED_APPS
 
 == Steps to run the GeoIP project  ==
 
