@@ -6,6 +6,11 @@ This [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects
 
 It it designed to highlight the mapping of users based on an external IP address using the [http://www.maxmind.com/ GeoIP] library, and an integrated convenience utility from within !GeoDjango.
 
+----
+The default url of the GeoIP app:
+
+http://geodjango-basic-apps.googlecode.com/svn/images/geoip_whereami.png
+----
 === Dependencies for GeoIP ===
 
  * GeoIP C libary and python bindings
