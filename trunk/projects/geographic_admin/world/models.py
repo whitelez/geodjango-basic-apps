@@ -52,9 +52,8 @@ class WorldBorders(models.Model):
     lat = models.DecimalField('Latitude',max_digits=7, decimal_places=3, help_text="Latitude stored as decimal", )
     
     # GeoDjango specific Polygon Field and GeoManager
-    # With this manager enabled a rich set of geospatial
-    # queryset methods immediately become available
     geometry = models.MultiPolygonField(srid=4326)
+    # GeoManager, a subclass that adds a rich set of geospatial queryset methods
     objects = models.GeoManager()
 
     class Meta:
