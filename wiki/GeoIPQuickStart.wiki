@@ -11,7 +11,7 @@ The default url of the GeoIP app:
 
 http://geodjango-basic-apps.googlecode.com/svn/images/geoip_whereami.png
 ----
-=== Dependencies for GeoIP ===
+=== Dependencies for GeoIP Project===
 
  * GeoIP C libary and python bindings
  * Note, *no database is needed* for this app and there is no models.py file
@@ -31,6 +31,7 @@ $ make
 $ sudo make install
 }}}
 
+ * Note: the GeoIP lib needs zlib, so you may need to `sudo apt-get install zlibc`
 {{{
 $ wget http://www.maxmind.com/download/geoip/api/python/GeoIP-Python-1.2.2.tar.gz
 $ tar xvf GeoIP-Python-1.2.2.tar.gz
