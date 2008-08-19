@@ -31,7 +31,7 @@ $ make
 $ sudo make install
 }}}
 
-Note: the GeoIP lib needs zlib.h, so you may need to `sudo apt-get install zlibc`
+Note: the GeoIP lib needs zlib.h, so you may need to `sudo apt-get install zlibc zlib1g-dev libssl-dev`
 
 {{{
 $ wget http://www.maxmind.com/download/geoip/api/python/GeoIP-Python-1.2.2.tar.gz
