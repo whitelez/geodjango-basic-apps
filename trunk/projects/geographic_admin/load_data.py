@@ -18,7 +18,7 @@ from world.models import WorldBorders
 try:
     add_postgis_srs(900913)
 except IntegrityError:
-    print 'The Google Spherical Mercator projection, or a projection with srid 900913, already exists, skipping insert"
+    print "The Google Spherical Mercator projection, or a projection with srid 900913, already exists, skipping insert"
 
 world_borders = 'data/TM_WORLD_BORDERS_SIMPL-0.2/TM_WORLD_BORDERS_SIMPL-0.2.shp'
 layer = LayerMapping(WorldBorders,world_borders,mapping(world_borders, geom_name='geometry',multi_geom=True), encoding='Latin1')
