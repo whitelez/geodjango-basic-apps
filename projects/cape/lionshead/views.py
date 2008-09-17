@@ -10,3 +10,6 @@ def all_kml(request):
 def map_page(request):
     lcount = InterestingLocation.objects.all().count()
     return render_to_response('map.html', {'location_count' : lcount})
+
+
+

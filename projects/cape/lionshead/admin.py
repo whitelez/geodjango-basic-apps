@@ -21,6 +21,22 @@ class InterestingLocationAdmin(admin.OSMGeoAdmin):
     map_width = 700
     map_height = 325
 
+
+
+class WardAdmin(admin.OSMGeoAdmin):
+    list_display = ('cllr','ward')
+    list_filter = ('cllr','ward',)
+    fieldsets = (
+      ('Location Attributes', {'fields': (('cllr','ward'))}),
+      ('Editable Map View', {'fields': ('geometry',)}),
+    )
+
+    # Default GeoDjango OpenLayers map options
+    scrollable = False
+    map_width = 700
+    map_height = 325
+
 # Register our model and admin options with the admin site
 admin.site.register(InterestingLocation, InterestingLocationAdmin)
+admin.site.register(Ward, WardAdmin)
 
