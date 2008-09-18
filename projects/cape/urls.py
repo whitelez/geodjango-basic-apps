@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^kml/', all_kml),
     (r'^$', map_page),
+    (r'^wards/(?P<id>[0-9]*)/', ward),
 
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/user/demo/cape/static', 'show_indexes': True}),
 
