@@ -1,7 +1,13 @@
 # Django settings for cape project.
+import os
+
+ROOT_PROJECT_FOLDER = os.path.dirname(__file__)
+STATIC_FILES = os.path.join(ROOT_PROJECT_FOLDER,'static')
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
