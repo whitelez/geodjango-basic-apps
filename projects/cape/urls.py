@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from lionshead.views import *
+from settings import STATIC_FILES
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,6 +20,6 @@ urlpatterns = patterns('',
     (r'^$', map_page),
     (r'^wards/(?P<id>[0-9]*)/', ward),
 
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/user/demo/cape/static', 'show_indexes': True}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_FILES, 'show_indexes': True}),
 
 )

@@ -1,7 +1,7 @@
 from django.contrib.gis import admin
 from models import *
 
-class InterestingLocationAdmin(admin.OSMGeoAdmin):
+class InterestingLocationAdmin(admin.GeoModelAdmin):
     """
     Determines how we will display the InterestingLocation model within the Admin App.  
     We're using the OSGMGeoAdmin subclass which will give us a map with OpenStreetMap data in
@@ -20,7 +20,7 @@ class InterestingLocationAdmin(admin.OSMGeoAdmin):
     scrollable = False
     map_width = 700
     map_height = 325
-
+    openlayers_url = '/static/openlayers/lib/OpenLayers.js'
 
 
 class WardAdmin(admin.OSMGeoAdmin):
@@ -35,6 +35,7 @@ class WardAdmin(admin.OSMGeoAdmin):
     scrollable = False
     map_width = 700
     map_height = 325
+    openlayers_url = '/static/openlayers/lib/OpenLayers.js'
 
 # Register our model and admin options with the admin site
 admin.site.register(InterestingLocation, InterestingLocationAdmin)
