@@ -64,7 +64,7 @@ $ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geo
 $ cd geographic_admin # your new project directory
 }}}
 
- * *Note*: this project does not include the project name (only the app name) in any of the code, therefore maintaining a more flexible design approach. For an example of this note that the settings.py uses `ROOT_URLCONF = 'urls'` rather than `geographic_admin.urls`, allowing you to rename the project folder to anything you'd like. See Malcolm Tredinnick's post on [http://www.pointy-stick.com/blog/2007/11/09/django-tip-developing-without-projects/ 'Developing Without Projects'] for background on this approach.
+ * *Note*: this project does not include the project name (only the app name) in any of the code, therefore maintaining a more flexible design approach. For an example of this note that the settings.py uses `ROOT_URLCONF = 'urls'` rather than `'geographic_admin.urls'`, allowing you to rename the project folder to anything you'd like. See Malcolm Tredinnick's post on [http://www.pointy-stick.com/blog/2007/11/09/django-tip-developing-without-projects/ 'Developing Without Projects'] for background on this approach.
 
  * Also, this project's settings.py uses dynamic paths for a variety of other settings so you shouldn't need to put the project folder on your PYTHONPATH. The development server ( `python manage.py runserver` ) will handle assigning the needed paths at startup.
 
@@ -80,10 +80,10 @@ $ createdb -E UTF8 -O postgres -U postgres template_postgis
 $ createlang plpgsql -d template_postgis -U postgres
 
 # Load postgis functions and spatial reference info
-# which likely was installed in the postgres share directory ($ pg_config --sharedir)
+# which are sometimes installed in the postgres share directory ($ pg_config --sharedir)
 # Also look for lwpostgis.sql and spatial_ref_sys.sql in (/usr/share/  or /usr/local/share/)
 
-# Once you have found their location load the sql into your template db:
+# Once you have found the correct location, load the first sql into your template db:
 $ psql -d template_postgis -U postgres -f /usr/share/lwpostgis.sql
 
 # Note: ignore any NOTICES, like 'psql:/usr/share/lwpostgis.sql:44: NOTICE:  type "histogram2d" is not yet defined'
@@ -216,7 +216,7 @@ $ python manage.py runserver
 
 *Q*: I'm getting a 'module OSMGeoAdmin not found error'. What's causing that?
 
-*A*: !OSMGeoAdmin is a special !GeoDjango subclass of the Django !ModelAdmin that will automatically create and !OpenLayers map with !OpenStreetMap tiles. It required a working installation of the GDAL library, so if GDAL is not found the Admin will not work.
+*A*: OSMGeoAdmin is a special !GeoDjango subclass of the Django !ModelAdmin that will automatically create and !OpenLayers map with !OpenStreetMap tiles. It required a working installation of the GDAL library, so if GDAL is not found the Admin will not work.
 
 *Q*: I'm getting a 'Exception Value: Error encountered checking Geometry returned from GEOS C function GEOSGeomFromHEX_buf' error when saving data in the Admin panel map. Is that a GEOS installation problem?
 
