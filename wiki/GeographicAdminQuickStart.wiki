@@ -220,4 +220,4 @@ $ python manage.py runserver
 
 *Q*: I'm getting a 'Exception Value: Error encountered checking Geometry returned from GEOS C function GEOSGeomFromHEX_buf' error when saving data in the Admin panel map. Is that a GEOS installation problem?
 
-*A*: Maybe, but it is much more likely an installation problem with your Proj.4 library, since Proj.4 is used (within PostGIS) to do the coordinate transformations needed when saving spatial objects in the admin. You are likely seeing a GEOS error because GEOS is the library smart enough to see that something is wrong. Go back and reinstall Proj.4 and the Proj.4 transformation data.
+*A*: Maybe, but it is much more likely an installation problem with your Proj.4 library, since Proj.4 is used (within PostGIS) to do the coordinate transformations needed when saving spatial objects in the admin. You are likely seeing a GEOS error because GEOS is the library smart enough to see that something is wrong. Go back and reinstall Proj.4 and the Proj.4 transformation data. For more info see: http://code.google.com/p/geodjango-basic-apps/issues/detail?id=3
