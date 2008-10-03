@@ -109,13 +109,21 @@ $ createdb -T template_postgis -U postgres geographic_admin
 }}}
  * You can now use this template for any future !GeoDjango projects.
 
- * *A Projections Note*: the load_data.py script (see Step 7 below) will attempt to add the google mercator projection, which is not available by default in the spatial_ref_sys table provided by PostGIS. If you do not rely on this script to load data you will need to add the google projection into your database. This projection is found in the [http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
+=== Step 4  |  Check your projections ===
+ * To use the custom `ModelAdmin` subclass available in !GeoDjango and used in this app called 'OSMGeoAdmin', you need to add the google spherical mercator projection to you database. Unfortunately its not going to be there by default.
+  * *Note*: you may want to add this projection to your `template_postgis` database.
+ * The load_data.py script (see Step 7 below) will attempt to add the google mercator projection automatically when importing the sample data. If you do not rely on this script to load data you will need to add the google projection into your database. This projection is found in the [http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
+ * !GeoDjango also includes a utility (that requires a proper installation of GDAL 1.5.2 or the setting of the GDAL_DATA_DIR for <- 1.5.1) that will add the projection for you:
+{{{
+from django.contrib.gis.utils import add_postgis_srs
+add_postgis_srs(900913)
+}}}
 
-=== Step 4  | Edit your settings.py ===
+=== Step 5  | Edit your settings.py ===
 
 Set your postgres user and password in settings.py
 
-=== Step 5  |  Use Django to setup you Database ===
+=== Step 6  |  Use Django to setup you Database ===
 
 Create your database schema
  a. OPTIONAL: *test* what table creation will look like in SQL with:
@@ -161,7 +169,7 @@ $ python manage.py syncdb
 Installing custom SQL for world.WorldBorders model
 }}}
 
-=== Step 6  |  View your Project in a Browser ===
+=== Step 7  |  View your Project in a Browser ===
 
  a. Test the application by running the development server
 {{{
@@ -176,7 +184,7 @@ $ python manage.py runserver 0.0.0.0:8000
 # ...then go to http://your_domain_name:8000/
 }}}
 
-=== Step 7   |  Load Some Actual Spatial Data ===
+=== Step 8   |  Load Some Actual Spatial Data ===
 
  a. Load the sample data with the provided script (Uses GDAL 'layermapping')
 {{{
@@ -196,7 +204,7 @@ Saved: Ghana
 [...]
 }}}
 
-=== Step 8   |  View your Project with Data ===
+=== Step 9   |  View your Project with Data ===
 
 Run the server again and enjoy testing out the Admin and Databrowse:
 {{{
