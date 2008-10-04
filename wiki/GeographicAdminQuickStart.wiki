@@ -110,14 +110,25 @@ $ createdb -T template_postgis -U postgres geographic_admin
  * You can now use this template for any future !GeoDjango projects.
 
 === Step 4  |  Check your projections ===
- * To use the custom `ModelAdmin` subclass available in !GeoDjango and used in this app called 'OSMGeoAdmin', you need to add the google spherical mercator projection to you database. Unfortunately its not going to be there by default.
+
+Projections Background
+
+ * To use the custom `ModelAdmin` subclass available in !GeoDjango and used in this app called 'OSMGeoAdmin', you need to add the google spherical mercator projection to your database's `spatial_ref_sys` table. Unfortunately its not going to be there by default. If you forgot to do this you will see an error like:
+{{{
+AddToPROJ4SRSCache: Cannot find SRID (900913) in spatial_ref_sys
+}}}
+
   * *Note*: you may want to add this projection to your `template_postgis` database.
- * The load_data.py script (see Step 7 below) will attempt to add the google mercator projection automatically when importing the sample data. If you do not rely on this script to load data you will need to add the google projection into your database. This projection is found in the [http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert and can also be downloaded from: http://spatialreference.org/ref/user/google-projection/
- * !GeoDjango also includes a utility (that requires a proper installation of GDAL 1.5.2 or the setting of the GDAL_DATA_DIR for <= 1.5.1) that will add the projection for you:
+
+How to Add Google Spherical Mercator
+
+ * The load_data.py script (see Step 8 below) will attempt to add the google mercator projection automatically when importing the sample data. If you do not rely on this script to load data you will need to add the google projection into your database manually.
+   * !GeoDjango also includes a utility (that requires a proper installation of GDAL 1.5.2 or the setting of the GDAL_DATA_DIR for <= 1.5.1) that will add the projection for you:
 {{{
 from django.contrib.gis.utils import add_postgis_srs
 add_postgis_srs(900913)
 }}}
+ * This projection can also be found in the [http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin/utilities/ utilities folder] as an sql insert as originally downloaded from: http://spatialreference.org/ref/user/google-projection/
 
 === Step 5  | Edit your settings.py ===
 
