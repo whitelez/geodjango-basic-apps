@@ -134,7 +134,7 @@ add_postgis_srs(900913)
 
 Set your postgres user and password in settings.py
 
-=== Step 6  |  Use Django to setup you Database ===
+=== Step 6  |  Use Django to setup your Database ===
 
 Create your database schema
  a. OPTIONAL: *test* what table creation will look like in SQL with:
