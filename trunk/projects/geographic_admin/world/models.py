@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # models.py
 
 # All standard Django fields as well as GeoDjango geometry fields and the GeoManager() can be

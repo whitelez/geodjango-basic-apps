@@ -2,6 +2,7 @@
 
 # This allows us to construct the needed absolute paths dynamically,
 # e.g., for the GIS_DATA_DIR, MEDIA_ROOT, and TEMPLATE_DIRS settings.
+# see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
 GEOGRAPHIC_ADMIN_DIR = os.path.dirname(__file__)
 
@@ -37,7 +38,7 @@ MEDIA_ROOT = os.path.join(GEOGRAPHIC_ADMIN_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/admin_media/'
 
 SECRET_KEY = '2f!vq4!f)u#g-sk7_=z+i0e(o0o&hue5khxbdkdx$f%hvpb^vd'
 
