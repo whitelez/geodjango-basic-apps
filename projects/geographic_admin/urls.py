@@ -13,3 +13,8 @@ urlpatterns = patterns('',
     (r'^databrowse/(.*)', databrowse.site.root),
 )
     
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT, 'show_indexes': True})
+    )
