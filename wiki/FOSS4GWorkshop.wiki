@@ -1,4 +1,6 @@
-= GeoDjango Workshop, FOSS4G 2008 =
+= !GeoDjango Workshop, FOSS4G 2008 =
+
+*Presented by Josh Livni and Christopher Schmidt*
 
 
 TOPICS
@@ -13,9 +15,11 @@ TOPICS
  * 9: More GeoDjango Features
 
 
-1.  INTRODUCTION 
+===1.  INTRODUCTION===
 
-NOTE:  This document has been modified from the actual workshop given at FOSS4G.  For example, installation instructions have been removed (as they will soon be deprecated by those available at geodjango.org).  Various other modifications have also taken place.  Code for this project may be downloaded from http://code.google.com/p/geodjango-basic-apps/
+NOTE:  This document has been modified from the actual workshop given at FOSS4G.  For example, installation instructions have been removed (as they will soon be deprecated by those available at geodjango.org).  Various other modifications have also taken place.  
+
+Code for this project may be downloaded from _http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/cape/_
 
 ------
 
@@ -27,7 +31,7 @@ This workshop is designed for people who may be new to Django, but have familiar
 
         
 
-2: INSTALLATION 
+=== 2: INSTALLATION ===
 
 GeoDjango can work with different spatial databases, and can function without GDAL/OGR.  However, for the purposes of this workshop we will be using PostGIS and GDAL/OGR.  
 
@@ -66,19 +70,20 @@ Under the assumption we may not have network access, the VMWare image also inclu
 Before we get started with Django, let's be sure we have all the software correctly installed.   
  * Open a new terminal window (on windows, do Start -> run -> cmd) 
  * Go to the location you want to start your new project 
-    * On Linux:  cd /projects/geodjango
+    * On Linux:  _cd /projects/geodjango_
 On Windows:  cd \geodjango 
-    * Type "python" to start the python interpreter, then do:
->>> import django
-                You should get no response
-          * Then type:
-                >>> from django.contrib.gis.gdal import HAS_GDAL
+ * Type "python" to start the python interpreter, then do:
+ * _import django_
+You should get no response
+ * Then type:
+{{{
+from django.contrib.gis.gdal import HAS_GDAL
+HAS_GDAL
+}}}
+You should get a result of 'True'.  If not, something is amiss with your GDAL installation.
 
-                >>> HAS_GDAL
-                You should get a result of 'True'.  If not, something is amiss with your GDAL installation.
 
-
-3:  STARTING YOUR GEODJANGO PROJECT 
+=== 3:  STARTING YOUR GEODJANGO PROJECT ===
 
 For this workshop, we will be creating a project called "cape", a simple database driven web application that lets users add and edit geospatial data via a map interface.  
 
@@ -122,7 +127,7 @@ python manage.py syncdb
       * During the syncdb process various tables will be installed in your database including an authentication table. It will prompt you for a superuser and choose a simple superuser name and password (user/user for example).
 
 
-       *        * Start the Webserver: Finally!  At the command line in the cape folder, run this command to start up the built-in webserver:
+       *   Start the Webserver: Finally!  At the command line in the cape folder, run this command to start up the built-in webserver:
 {{{
                 python manage.py runserver
 }}}
@@ -145,7 +150,8 @@ admin.autodiscover()
  
 
 
-4:  CREATING YOUR APPLICATION 
+=== 4:  CREATING YOUR APPLICATION ===
+
 We're going to call our application lionshead, and it is going to let us add and modify locations of interest (points) and wineries (polygons). First, let's have Django create the boilerplate application files for us.  Within the cape project folder, type the following command: 
     python manage.py startapp lionshead 
 
@@ -180,7 +186,7 @@ Because we've added the lionshead application to our INSTALLED_APPS for our proj
 
     python manage.py syncdb 
 
-5:  MODIFYING SOME ACTUAL DATA 
+=== 5:  MODIFYING SOME ACTUAL DATA ===
 
 5.1  WITH THE PYTHON SHELL 
 
@@ -241,7 +247,7 @@ To summarize what we've done so far:
        * Registered our Model with the Admin package 
        * Added and edited some data 
 
-6: BUILDING A PUBLIC WEBSITE 
+=== 6: BUILDING A PUBLIC WEBSITE ===
 
 The next step we'll do is customize some views and associated templates which will be the public facing website.  To display our map publicly, we are going to build two basic items: 
        * A KML of all our locations 
@@ -347,7 +353,7 @@ If we wanted to provide an alternative download form for users who wanted to ope
   </body>
 }}}
 
-7: IMPORTING FROM A SHAPEFILE 
+=== 7: IMPORTING FROM A SHAPEFILE ===
 
 We're now going to import some administrative boundaries from a shapefile into GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need , and inspect the Shapefile: 
 
@@ -420,7 +426,7 @@ In this case, we would need to also modify our urls.py so that /static would poi
 For a larger list of options we can pass to the map admin, see http://code.djangoproject.com/browser/django/trunk/django/contrib/gis/admin/options.py
 
 
-8: SOME ACTUAL GIS 
+=== 8: SOME ACTUAL GIS ===
 
 Once we have done this, we could certainly create a similar KML output to the InterestingPoint KML we created above for all the Ward geometries. But as much fun as displaying one data layer at a time can be, let's instead create a more complex view that displays just one ward (which will be specified in the URL), and have this view feed a map template that highlights the appropriate ward, and all the Interesting Locations that are within 5 miles of that ward.
 
@@ -508,7 +514,7 @@ Now, you can visit your ward page by going to, for example, http://localhost:800
 
 Now, we can go to http://localhost:8000/admin/lionshead/interestinglocation/add/, and scroll to the Southeast of Cape Town. You will see a label that says "Strand". Place a marker in the residential area here, and then visit http://localhost:8000/wards/96/ again, and you should see a single interesting point listed in this area. Congratulations, you've just combined the data of two different layers in GeoDjango, using a database-backed intersection query.   
 
-9: MORE GEODJANGO FEATURES 
+=== 9: MORE GEODJANGO FEATURES ===
 {{{
 from django.contrib.gis.geos import  * 
 from django.contrib.gis.measure import D # D is a shortcut for Distance 
@@ -546,13 +552,13 @@ print qs.extent()
 }}}
 
 
-10: ENTERING DATA FROM THE PUBLIC SITE 
+=== 10: ENTERING DATA FROM THE PUBLIC SITE ===
 
 [REMOVED]
 
 
 
-11: WORKSHOP TROUBLESHOOTING 
+=== 11: WORKSHOP TROUBLESHOOTING ===
 
 It is quite possible workshop attendees will not have internet access.  In this case, the default OpenLayers map settings (which assume they will have access to live WMS or other tile services) will fail.  We can fix this by: 
        * Overriding the default admin map layers, by adding these options to your classes in admin.py: 
