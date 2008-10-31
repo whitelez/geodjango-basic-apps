@@ -12,7 +12,7 @@ TOPICS
  * 6: Building A Public Website
  * 7: Importing from a Shapefile
  * 8: Some Actual GIS
- * 9: More GeoDjango Features
+ * 9: More !GeoDjango Features
 
 
 ===1.  INTRODUCTION===
@@ -25,7 +25,7 @@ Code for this project may be downloaded from _http://geodjango-basic-apps.google
 
 According to django website (djangoproject.com), Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.  For projects where you need to get a robust database driven application online in a timely manner, Django can be an exceptional tool.   
 
-In line with another popular Django slogan, GeoDjango has been called a Geographic Web Framework for Perfectionists with Deadlines.  As of Django v1.0, GeoDjango is part of the core set of Django packages that ship with the default download.  Adding Geographic capabilities to a Django project is as simple as ensuring you have the base software stack, and enabling the gis contrib package within Django. 
+In line with another popular Django slogan, !GeoDjango has been called a Geographic Web Framework for Perfectionists with Deadlines.  As of Django v1.0, GeoDjango is part of the core set of Django packages that ship with the default download.  Adding Geographic capabilities to a Django project is as simple as ensuring you have the base software stack, and enabling the gis contrib package within Django. 
 
 This workshop is designed for people who may be new to Django, but have familiarity with python and general web concepts, such as HTML/CSS, templating, and apache or other web servers.  Although it is not required, you will likely get more out of this workshop if you try make it through the introductory Django tutorial at djangoproject.com before the FOSS4G conference.  
 
@@ -33,7 +33,7 @@ This workshop is designed for people who may be new to Django, but have familiar
 
 === 2: INSTALLATION ===
 
-GeoDjango can work with different spatial databases, and can function without GDAL/OGR.  However, for the purposes of this workshop we will be using PostGIS and GDAL/OGR.  
+GeoDjango can work with different spatial databases, and can function without GDAL/OGR.  However, for the purposes of this workshop we will be using !PostGIS and GDAL/OGR.  
 
 
 2.1: VMWare Virtual Machine (Recommended): 
@@ -49,7 +49,7 @@ The VMWare image has all the required software pre-installed on a linux base, in
  * Python 2.5
  * pyscopg2
  * Django 1.0
- * OpenLayers
+ * !OpenLayers
 
 Under the assumption we may not have network access, the VMWare image also includes a WMS server that can be used by OpenLayers to display some basic administrative boundaries as a background to the data we'll be interacting with.
 
@@ -63,7 +63,7 @@ Under the assumption we may not have network access, the VMWare image also inclu
 
 2.3: Self Installation:
 
-[REMOVED]
+REMOVED
 
 2.4 Test your installation
 
@@ -87,7 +87,7 @@ You should get a result of 'True'.  If not, something is amiss with your GDAL in
 
 For this workshop, we will be creating a project called "cape", a simple database driven web application that lets users add and edit geospatial data via a map interface.  
 
-NOTE:  A django 'project' can contain many django 'applications', which can exist simply as code inside subfolders within your project folder or a folder anywhere on your PYTHONPATH.  We will be creating both a project and an application from scratch, and we will also include some other applications to bring in some features for us that we don't want to build ourselves.  One nice thing about this is by decoupling our application from a particular website/project, we can reuse the generic application we're building today in any GeoDjango website with just a few simple lines of code saying to include it. 
+NOTE:  A django 'project' can contain many django 'applications', which can exist simply as code inside subfolders within your project folder or a folder anywhere on your PYTHONPATH.  We will be creating both a project and an application from scratch, and we will also include some other applications to bring in some features for us that we don't want to build ourselves.  One nice thing about this is by decoupling our application from a particular website/project, we can reuse the generic application we're building today in any !GeoDjango website with just a few simple lines of code saying to include it. 
 
        * Create the Project: We will create a new project from scratch. Go to your project folder (eg c:\geodjango) and type:   
                 django-admin.py startproject cape
@@ -160,9 +160,9 @@ Django has now  created some more boilerplate for us, including some empty files
 The next step is to tell Django to include this new application, like we did with some of the contributed ones above.  Modify your settings.py so the INSTALLED_APPS tuple includes 'lionshead', 
 
 4.1 CREATING YOUR CUSTOM MODELS 
-In django lingo, we will have a variety of "models", each of which relates to a spatially enabled table in the postGIS database.  To get an idea of some of the things geodjango offers us, we will be both creating the models by hand, and by auto-generating them from an existing shapefile. 
+In django lingo, we will have a variety of "models", each of which relates to a spatially enabled table in the PostGIS database.  To get an idea of some of the things geodjango offers us, we will be both creating the models by hand, and by auto-generating them from an existing shapefile. 
 
-Now is the time to break into teams, so you can help eachother out as you work to get your first models in this application up and running.  For the first phase, we will be creating models manually.  Each team will create the first two models by hand, and ensure they are able to work with the geographic data in these models using the default GeoDjango admin panel. 
+Now is the time to break into teams, so you can help eachother out as you work to get your first models in this application up and running.  For the first phase, we will be creating models manually.  Each team will create the first two models by hand, and ensure they are able to work with the geographic data in these models using the default !GeoDjango admin panel. 
 
 For this application, we're going to build two models: 
        * Locations of Interest (points) 
@@ -239,7 +239,7 @@ admin.site.register(InterestingLocation, InterestingLocationAdmin)
 }}}
 Ok - now, assuming no typos, we should be able to reload http://localhost:8000/admin in the browser and see our new Locations model.  Click on it, and then at the top right click 'Add Interesting Location' to add a new Interesting Location.  You will need to fill out the name and interestingness values (by default they are required, and we did not specify they are optional), and then you can click the map to add a new location, and save. 
 
-At this point, we have covered one of the key functionalities of GeoDjango and of building yourself a GIS enabled website:  An interactive map that lets you view/modify spatial data that's stored inside PostGIS.   
+At this point, we have covered one of the key functionalities of !GeoDjango and of building yourself a GIS enabled website:  An interactive map that lets you view/modify spatial data that's stored inside PostGIS.   
 
 To summarize what we've done so far: 
        * Created a Django Project and Application 
@@ -251,7 +251,7 @@ To summarize what we've done so far:
 
 The next step we'll do is customize some views and associated templates which will be the public facing website.  To display our map publicly, we are going to build two basic items: 
        * A KML of all our locations 
-       * An OpenLayers Map that displays the KML appropriately 
+       * An !OpenLayers Map that displays the KML appropriately 
 
 
 6.1: OUR FIRST VIEW 
@@ -269,12 +269,12 @@ def all_kml(request):
        *   
           * render_to_response -- unused in our code so far 
           * render_to_kml -- a geodjango shortcut for spitting out kml to our templates 
-          * all our models (for now, just InterestingLocation) 
-    In our all_kml method, we simply retrieved all our InterestingLocation objects from the database, and sent them off to a "placemarks.kml" which can access them via a variable called "places".   
+          * all our models (for now, just !InterestingLocation) 
+    In our all_kml method, we simply retrieved all our !InterestingLocation objects from the database, and sent them off to a "placemarks.kml" which can access them via a variable called "places".   
 
 6.2 OUR FIRST TEMPLATES 
 
-Next, we need to make that placemarks.kml.  Oh wait - actually we don't, since a basic templates.kml is already included for us with the GeoDjango installation.  You can go see it at django/contrib/gis/templates/gis/kml 
+Next, we need to make that placemarks.kml.  Oh wait - actually we don't, since a basic templates.kml is already included for us with the !GeoDjango installation.  You can go see it at django/contrib/gis/templates/gis/kml 
 
 Since Django knows about our contrib.gis package, and it's associated templates, we can use the placemarks.kml by telling our view where this specific template is relative to our base gis templates folder.   
 Change the render_to_kml in the view we made from "placemarks.kml" to the relative path from our gis contrib templates:  "gis/kml/placemarks.kml"/ 
@@ -298,7 +298,7 @@ Now load up http://localhost:8000/kml
 
 6.4 THE PUBLIC MAP PAGE 
 
-Not only did GeoDjango automagically set the appropriate KML mime-type for us, but with just a 3 line view and a simple url pattern, we have a nice kml showing all our geodata.  Feel free to add a new location or two via the Admin site, and reload the kml. 
+Not only did !GeoDjango automagically set the appropriate KML mime-type for us, but with just a 3 line view and a simple url pattern, we have a nice kml showing all our geodata.  Feel free to add a new location or two via the Admin site, and reload the kml. 
 
 Now that we have a working kml feed, we can add it to a map.  But first we need a map to add it to, and for this we're going to create a new view and associated template that will display an openlayers map for the public: 
 
@@ -355,7 +355,7 @@ If we wanted to provide an alternative download form for users who wanted to ope
 
 === 7: IMPORTING FROM A SHAPEFILE ===
 
-We're now going to import some administrative boundaries from a shapefile into GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need , and inspect the Shapefile: 
+We're now going to import some administrative boundaries from a shapefile into !GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need , and inspect the Shapefile: 
 
 
         from django.contrib.gis.gdal import DataSource 
@@ -417,18 +417,19 @@ class WardAdmin(admin.OSMGeoAdmin):
  admin.site.register(Ward, WardAdmin) 
 }}}
 
-NOTE:  We could also add more openlayers options to the admin.  For example, we can give a different URL for the OpenLayers library, as follows:
+NOTE:  We could also add more openlayers options to the admin.  For example, we can give a different URL for the !OpenLayers library, as follows:
        openlayers_url = '/static/openlayers/lib/OpenLayers/js'
 In this case, we would need to also modify our urls.py so that /static would point to a local location for our static files:
-      (r'^static/(?P<path>. *)$', 'django.views.static.serve', {
+{{{
+     (r'^static/(?P<path>. *)$', 'django.views.static.serve', {
        'document_root': 'q:\projects\cape\static', 'show_indexes': True}),
-
+}}}
 For a larger list of options we can pass to the map admin, see http://code.djangoproject.com/browser/django/trunk/django/contrib/gis/admin/options.py
 
 
 === 8: SOME ACTUAL GIS ===
 
-Once we have done this, we could certainly create a similar KML output to the InterestingPoint KML we created above for all the Ward geometries. But as much fun as displaying one data layer at a time can be, let's instead create a more complex view that displays just one ward (which will be specified in the URL), and have this view feed a map template that highlights the appropriate ward, and all the Interesting Locations that are within 5 miles of that ward.
+Once we have done this, we could certainly create a similar KML output to the !InterestingPoint KML we created above for all the Ward geometries. But as much fun as displaying one data layer at a time can be, let's instead create a more complex view that displays just one ward (which will be specified in the URL), and have this view feed a map template that highlights the appropriate ward, and all the Interesting Locations that are within 5 miles of that ward.
 
 
 In this section, we'll be creating a ward-specific viewing page. That ward page will list the interesting points inside the ward, and list them in the HTML page, and finally display a map. 
@@ -512,7 +513,7 @@ Now, each of your points will be displayed on the map. You can then add code to 
 }}}
 Now, you can visit your ward page by going to, for example, http://localhost:8000/wards/96/ . You can compare this to viewing in the admin by visiting http://localhost:8000/admin/lionshead/ward/96/ .
 
-Now, we can go to http://localhost:8000/admin/lionshead/interestinglocation/add/, and scroll to the Southeast of Cape Town. You will see a label that says "Strand". Place a marker in the residential area here, and then visit http://localhost:8000/wards/96/ again, and you should see a single interesting point listed in this area. Congratulations, you've just combined the data of two different layers in GeoDjango, using a database-backed intersection query.   
+Now, we can go to http://localhost:8000/admin/lionshead/interestinglocation/add/, and scroll to the Southeast of Cape Town. You will see a label that says "Strand". Place a marker in the residential area here, and then visit http://localhost:8000/wards/96/ again, and you should see a single interesting point listed in this area. Congratulations, you've just combined the data of two different layers in !GeoDjango, using a database-backed intersection query.   
 
 === 9: MORE GEODJANGO FEATURES ===
 {{{
@@ -554,13 +555,13 @@ print qs.extent()
 
 === 10: ENTERING DATA FROM THE PUBLIC SITE ===
 
-[REMOVED]
+REMOVED
 
 
 
 === 11: WORKSHOP TROUBLESHOOTING ===
 
-It is quite possible workshop attendees will not have internet access.  In this case, the default OpenLayers map settings (which assume they will have access to live WMS or other tile services) will fail.  We can fix this by: 
+It is quite possible workshop attendees will not have internet access.  In this case, the default !OpenLayers map settings (which assume they will have access to live WMS or other tile services) will fail.  We can fix this by: 
        * Overriding the default admin map layers, by adding these options to your classes in admin.py: 
 {{{
     wms_url = '/cgi-bin/mapserv?map=/home/user/wms/cape.map&'
