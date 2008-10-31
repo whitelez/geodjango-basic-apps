@@ -25,7 +25,7 @@ Code for this project may be downloaded from _http://geodjango-basic-apps.google
 
 According to django website (djangoproject.com), Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.  For projects where you need to get a robust database driven application online in a timely manner, Django can be an exceptional tool.   
 
-In line with another popular Django slogan, !GeoDjango has been called a Geographic Web Framework for Perfectionists with Deadlines.  As of Django v1.0, GeoDjango is part of the core set of Django packages that ship with the default download.  Adding Geographic capabilities to a Django project is as simple as ensuring you have the base software stack, and enabling the gis contrib package within Django. 
+In line with another popular Django slogan, !GeoDjango has been called a Geographic Web Framework for Perfectionists with Deadlines.  As of Django v1.0, !GeoDjango is part of the core set of Django packages that ship with the default download.  Adding Geographic capabilities to a Django project is as simple as ensuring you have the base software stack, and enabling the gis contrib package within Django. 
 
 This workshop is designed for people who may be new to Django, but have familiarity with python and general web concepts, such as HTML/CSS, templating, and apache or other web servers.  Although it is not required, you will likely get more out of this workshop if you try make it through the introductory Django tutorial at djangoproject.com before the FOSS4G conference.  
 
