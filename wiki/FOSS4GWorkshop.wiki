@@ -156,7 +156,7 @@ admin.autodiscover()
 
 === 4:  CREATING YOUR APPLICATION ===
 
-We're now going to import some administrative boundaries from a shapefile into !GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need, and inspect the Shapefile: 
+We're now going to import some administrative boundaries from a shapefile into !GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt) to start it up again if you need, and inspect the Shapefile: 
 
 {{{
 python manage.py startapp lionshead 
@@ -472,7 +472,6 @@ We've added an item for viewing a specific ward. You'll see here that there is a
 There are two different queries we want to perform in order to build the ward page. First, we want to take the passed in ID, and we want to find the associated ward. If the ID is invalid, we want to return a 404 to the user. Django has a shortcut for this type of thing, because it's a relatively common operation. Like all shortcuts, it is in django.shortcuts, and it's called 'get_object_or_404'. We'll use this to get our ward: 
 
 {{{
-
 from django.shortcuts import get_object_or_404
  ...
  def ward(request, id):
@@ -507,6 +506,7 @@ Next, we'll build our template. Because we'll be building a map again, we can st
 Now, instead of loading data from the KML view we created earlier, we're going to create features directly in our template. You could also create a second view to serve your data up to be loaded asynchronously (as we did with the KML before): this is just demonstrating another way to achieve the same goal. So, remove the 'kml = new OpenLayers.Layer.GML' line and the line that follows it from the new 'ward.html' template. 
 
 Next, you'll be creating a geometry from GeoJSON created in the template.   
+
 {{{
     geojson_format = new OpenLayers.Format.GeoJSON()
     ward = geojson_format.read({{ ward.geometry.geojson|safe}})[0];
@@ -517,9 +517,7 @@ Next, you'll be creating a geometry from GeoJSON created in the template.
     vectors.addFeatures(ward);
 }}} 
 
-Next, change the 'kml' in the addLayers call to 'vectors'. Also, we only care about this ward at this time, so we can change the setCenter call to "map.zoomToExtent(ward.geometry.getBounds());" -- This will zoom the map to just the bounds of the ward. Finally, change the {{location_count}} variable in the text further down the page to simply {{interesting_points.count}} -- this will issue a
-+{{{SELECT COUNT(*) FROM}}}
-+query to the database, giving back a count of the number of matching features.
+Next, change the 'kml' in the addLayers call to 'vectors'. Also, we only care about this ward at this time, so we can change the setCenter call to "map.zoomToExtent(ward.geometry.getBounds());" -- This will zoom the map to just the bounds of the ward. Finally, change the {{location_count}} variable in the text further down the page to simply {{interesting_points.count}} -- this will issue a {{{SELECT COUNT(*) FROM}}} query to the database, giving back a count of the number of matching features.
 
 Now, we should be able to loop over the points in the ward, and add each of them to the map as well. We also want to add them to the HTML page, so we'll do one iteration in the main body of the page, and add features to an array to be parsed in the loading function as we go. Directly above the <div id="map"> we'll add the following code:
 
