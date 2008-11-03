@@ -3,6 +3,7 @@
 
 *Presented by Josh Livni and Christopher Schmidt*
 
+*Document contributions from Tim Sutton and Tyler Erickson*
 
 TOPICS
  * 1: Intro
@@ -34,7 +35,7 @@ This workshop is designed for people who may be new to Django, but have familiar
 
 === 2: INSTALLATION ===
 
-GeoDjango can work with different spatial databases, and can function without GDAL/OGR.  However, for the purposes of this workshop we will be using !PostGIS and GDAL/OGR.  
+GeoDjango can work with different spatial databases, and can function without GDAL/OGR.  However, for the purposes of this workshop we will be using PostGIS and GDAL/OGR.
 
 
 2.1: VMWare Virtual Machine (Recommended): 
@@ -132,7 +133,7 @@ python manage.py syncdb
 
        *   Start the Webserver: Finally!  At the command line in the cape folder, run this command to start up the built-in webserver:
 {{{
-                python manage.py runserver
+python manage.py runserver
 }}}
 
        *  View the site: At this point, we have a basic web application (which doesn't do much), and can visit it by going to http://localhost:8000/.  You should notice an error page welcoming you to Django, but pointing out there's nothing to see yet.  As the error notes, we need to create some URLS we can use.
@@ -155,7 +156,7 @@ admin.autodiscover()
 
 === 4:  CREATING YOUR APPLICATION ===
 
-We're going to call our application lionshead, and it is going to let us add and modify locations of interest (points). First, let's have Django create the boilerplate application files for us.  Within the cape project folder, type the following command: 
+We're now going to import some administrative boundaries from a shapefile into !GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need, and inspect the Shapefile: 
 
 {{{
 python manage.py startapp lionshead 
@@ -188,7 +189,7 @@ class InterestingLocation(models.Model):
 Because we've added the lionshead application to our INSTALLED_APPS for our project, and created a new model in the lionshead application, we can now run the syncdb command again to have django create the appropriate table for us in our PostGIS database: 
 
 {{{
-    python manage.py syncdb 
+python manage.py syncdb 
 }}}
 
 === 5:  MODIFYING SOME ACTUAL DATA ===
@@ -374,9 +375,8 @@ If we wanted to provide an alternative download form for users who wanted to ope
 
 We're now going to import some administrative boundaries from a shapefile into !GeoDjango.  Open up the geodjango python shell (python manage.py shell in the command prompt to start it up again if you need , and inspect the Shapefile: 
 
-
-        from django.contrib.gis.gdal import DataSource 
 {{{
+from django.contrib.gis.gdal import DataSource 
 wards = DataSource('data/wards_4326.shp')
 layer = wards[0]
 print layer.fields
@@ -409,7 +409,7 @@ python manage.py syncdb
 And, back in our python shell, we can define the Layer Mapping and import the code 
 
 {{{
-From lionshead.models import Ward
+from lionshead.models import Ward
 from django.contrib.gis.utils import mapping, LayerMapping
 print mapping(wards)
 lm = LayerMapping(Ward, wards, mapping(wards, geom_name='geometry'))
@@ -418,9 +418,9 @@ lm.save(verbose=True)
 
 This will read the data from the provinces shapefile and load it into our Ward model in PostGIS. 
 
-As before, we need to hook this up into our Admin, so open up admin.py and add a new class: 
-{{{
+As before, we need to hook this up into our Admin, so open up admin.py and add a new class:
 
+{{{
 class WardAdmin(admin.OSMGeoAdmin):
      list_display = ('cllr','ward')
      fieldsets = (
@@ -517,9 +517,11 @@ Next, you'll be creating a geometry from GeoJSON created in the template.
     vectors.addFeatures(ward);
 }}} 
 
-Next, change the 'kml' in the addLayers call to 'vectors'. Also, we only care about this ward at this time, so we can change the setCenter call to "map.zoomToExtent(ward.geometry.getBounds());" -- This will zoom the map to just the bounds of the ward. Finally, change the {{location_count}} variable in the text further down the page to simply {{interesting_points.count}} -- this will issue a SELECT COUNT( *) FROM to the database, giving back a count of the number of matching features. 
+Next, change the 'kml' in the addLayers call to 'vectors'. Also, we only care about this ward at this time, so we can change the setCenter call to "map.zoomToExtent(ward.geometry.getBounds());" -- This will zoom the map to just the bounds of the ward. Finally, change the {{location_count}} variable in the text further down the page to simply {{interesting_points.count}} -- this will issue a
++{{{SELECT COUNT(*) FROM}}}
++query to the database, giving back a count of the number of matching features.
 
-Now, we should be able to loop over the points in the ward, and add each of them to the map as well. We also want to add them to the HTML page, so we'll do one iteration in the main body of the page, and add features to an array to be parsed in the loading function as we go. Directly above the <div id="map">, we'll add the following code: 
+Now, we should be able to loop over the points in the ward, and add each of them to the map as well. We also want to add them to the HTML page, so we'll do one iteration in the main body of the page, and add features to an array to be parsed in the loading function as we go. Directly above the <div id="map"> we'll add the following code:
 
 {{{
     <script> var points = []; </script>    
