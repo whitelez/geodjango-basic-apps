@@ -240,3 +240,8 @@ $ python manage.py runserver
 *Q*: I'm getting a 'Exception Value: Error encountered checking Geometry returned from GEOS C function GEOSGeomFromHEX_buf' error when saving data in the Admin panel map. Is that a GEOS installation problem?
 
 *A*: Maybe, but it is much more likely an installation problem with your Proj.4 library, since Proj.4 is used (within PostGIS) to do the coordinate transformations needed when saving spatial objects in the admin. You are likely seeing a GEOS error because GEOS is the library smart enough to see that something is wrong, while you are missing some kety Proj.4 files. Go back and reinstall Proj.4 and the Proj.4 transformation/datum data. See: http://geodjango.org/docs/install.html#proj-4.  For more info see: http://code.google.com/p/geodjango-basic-apps/issues/detail?id=3
+
+*Q*: I'm on Windows and getting a "the ordinal 2254 could not be located" in libeay32.dll error when running the HAS_GDAL tests after installation. Subsequent attempts to run the y "HAS_GDAL" = false.
+
+*A*: You've got a problem with your libraries that relate to libeay32.dll and this is not a !GeoDjango problem. Try installing Win32 OpenSSL to fix the problem of different libeay32.dll versions on your system.
+
