@@ -175,7 +175,7 @@ $ python manage.py syncdb
 #say yes to the prompt to create a superuser (this will be your Admin Panel login)
 }}}
 
- Make sure in the syncdb output you see the line (This is a !GeoDjango hook):
+ Make sure in the syncdb output you see the line:
 {{{
 Installing custom SQL for world.WorldBorders model
 }}}
