@@ -227,16 +227,16 @@ $ python manage.py runserver
 
 *Q*: What version of Django do I need to use to get !GeoDjango?
 
-*A*: As of August 5th, !GeoDjango can be found in SVN trunk within the contrib/gis folder. Download a checkout of svn trunk or wait for the Django 1.0 release.
+*A*: As of August 5th, !GeoDjango can be found in SVN trunk within the contrib/gis folder. Download a checkout of svn trunk or a Django >=1.0 release.
 
 *Q*: Okay, so this is a full example project, but is there a tutorial on how to add !GeoDjango functionality to my existing application?
 
-*A*: No, not yet. But, in general to enable !GeoDjango within any of your existing Django Projects you must start by adding 'django.contrib.gis' to your INSTALLED_APPS setting, override the default manager on your models, and then import your geometry fields from django.contrib.gis.db. Then you will have the !GeoDjango methods available on your models and you can play around with the new api features and start building views.
+*A*: Yes, see FOSS4GWorkshop and http://geodjango.org/docs/tutorial.html
 
 *Q*: I'm getting a 'module OSMGeoAdmin not found error'. What's causing that?
 
-*A*: OSMGeoAdmin is a special !GeoDjango subclass of the Django !ModelAdmin that will automatically create and !OpenLayers map with !OpenStreetMap tiles. It required a working installation of the GDAL library, so if GDAL is not found the Admin will not work.
+*A*: OSMGeoAdmin is a special !GeoDjango subclass of the Django !ModelAdmin that will automatically create an !OpenLayers map with !OpenStreetMap tiles. It requires a working installation of the GDAL library, so if GDAL is not found the Admin will not work and that `OSMGeoAdmin` class will not be available. So, either install GDAL or switch the !ModelAdmin to `GeoModelAdmin` which does not depend on GDAL.
 
 *Q*: I'm getting a 'Exception Value: Error encountered checking Geometry returned from GEOS C function GEOSGeomFromHEX_buf' error when saving data in the Admin panel map. Is that a GEOS installation problem?
 
-*A*: Maybe, but it is much more likely an installation problem with your Proj.4 library, since Proj.4 is used (within PostGIS) to do the coordinate transformations needed when saving spatial objects in the admin. You are likely seeing a GEOS error because GEOS is the library smart enough to see that something is wrong. Go back and reinstall Proj.4 and the Proj.4 transformation data. For more info see: http://code.google.com/p/geodjango-basic-apps/issues/detail?id=3
+*A*: Maybe, but it is much more likely an installation problem with your Proj.4 library, since Proj.4 is used (within PostGIS) to do the coordinate transformations needed when saving spatial objects in the admin. You are likely seeing a GEOS error because GEOS is the library smart enough to see that something is wrong. Go back and reinstall Proj.4 and the Proj.4 transformation/datum data. For more info see: http://code.google.com/p/geodjango-basic-apps/issues/detail?id=3
