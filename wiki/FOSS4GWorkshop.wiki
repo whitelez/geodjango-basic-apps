@@ -428,7 +428,7 @@ class WardAdmin(admin.OSMGeoAdmin):
        ('Editable Map View', {'fields': ('geometry',)}),
      )
  
-    scrollable = False
+     scrollable = False
      map_srid = 4326
      debug = True
  
