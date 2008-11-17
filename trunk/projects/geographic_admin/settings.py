@@ -19,7 +19,7 @@ ADMINS = (
 )
 
 DATABASE_ENGINE = 'postgresql_psycopg2'
-DATABASE_NAME = 'geographic_admin'
+DATABASE_NAME = 'geoadmin'
 DATABASE_USER = 'postgres' # make sure to change this to your postgres user
 DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
