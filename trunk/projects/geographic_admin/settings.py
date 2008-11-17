@@ -6,6 +6,12 @@
 import os
 GEOGRAPHIC_ADMIN_DIR = os.path.dirname(__file__)
 
+# http://docs.djangoproject.com/en/dev/topics/testing/#id1
+# Your user must be a postgrest superuser
+# Avoid specifying your password with: ~/.pgpass
+# http://www.postgresql.org/docs/8.3/interactive/libpq-pgpass.html
+TEST_RUNNER='django.contrib.gis.tests.run_gis_tests'
+
 DEBUG=True
 
 ADMINS = (
