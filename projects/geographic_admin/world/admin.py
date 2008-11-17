@@ -4,6 +4,8 @@
 # They appear in the admin app once they are registered at the bottom of 
 # this code (same goes for the databrowse app)
 
+from django.conf import settings # needed if we use the GOOGLE_MAPS_API_KEY from settings
+
 # Import the admin site reference from django.contrib.admin
 from django.contrib import admin
 
@@ -23,17 +25,18 @@ from world.models import WorldBorders
 from django.contrib import databrowse
 databrowse.site.register(WorldBorders)
 
-
+USE_GOOGLE_TERRAIN_TILES = False
 
 class WorldBordersAdmin(OSMGeoAdmin):
     """
     
-    The class that determines exact display of the WorldBorders model
+    The class that determines the display of the WorldBorders model
     within the Admin App.
     
-    This class uses example options to give a feel of the potential display
-    options available in newforms admin as well as GeoDjango. For a 
-    look at all the GeoDjango options dive into the source code available at:
+    This class uses some sample options and provides a bunch more in commented
+    form below to show the various options GeoDjango provides to customize OpenLayers.
+    
+    For a look at all the GeoDjango options dive into the source code available at:
     
     http://code.djangoproject.com/browser/django/trunk/django/contrib/gis/admin/options.py
     
@@ -52,6 +55,12 @@ class WorldBordersAdmin(OSMGeoAdmin):
       ('Area and Coordinates', {'fields': ('area','lat','lon',), 'classes': ('collapse', 'wide')}),
       ('Editable Map View', {'fields': ('geometry',), 'classes': ('show', 'wide')}),
     )
+
+    if USE_GOOGLE_TERRAIN_TILES:
+      map_template = 'gis/admin/google.html'
+      extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+    else:
+      pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
 
     # Default GeoDjango OpenLayers map options
     # Uncomment and modify as desired
