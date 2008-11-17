@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-# To run this as a script you must set the Django settings file
+# For this script to work we must set the Django settings file
 # as an environment setting before importing LayerMapping
+
 # Alternatively you can place 
 # export DJANGO_SETTINGS_MODULE=settings
 # in your .bash_profile
@@ -20,6 +21,12 @@ try:
 except IntegrityError:
     print "The Google Spherical Mercator projection, or a projection with srid 900913, already exists, skipping insert"
 
-world_borders = 'data/TM_WORLD_BORDERS_SIMPL-0.2/TM_WORLD_BORDERS_SIMPL-0.2.shp'
-layer = LayerMapping(WorldBorders,world_borders,mapping(world_borders, geom_name='geometry',multi_geom=True), encoding='Latin1')
-layer.save(verbose=True, progress=True)
+WORLD_SHP = 'world/data/TM_WORLD_BORDERS-0.3.shp'
+
+layer = LayerMapping(WorldBorders,
+                      WORLD_SHP,
+                      mapping(WORLD_SHP,geom_name='geometry',multi_geom=True),
+                      transform=False,
+                      encoding='iso-8859-1')
+                    
+layer.save(verbose=True,strict=True,progress=True)
