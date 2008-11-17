@@ -60,7 +60,7 @@ Download the Geographic Admin project [http://code.google.com/p/geodjango-basic-
 
 
 {{{
-$ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin
+$ svn checkout http://geodjango-basic-apps.googlecode.com/svn/trunk/projects/geographic_admin 
 $ cd geographic_admin # your new project directory
 }}}
 
@@ -103,9 +103,9 @@ $ psql -d template_postgis -U postgres -f /usr/share/spatial_ref_sys.sql
 $ ldconfig # Then restart PostgreSQL
 }}}
 
- b. Create a postgis enabled database called geographic_admin from the template:
+ b. Create a postgis enabled database called geoadmin from the template:
 {{{
-$ createdb -T template_postgis -U postgres geographic_admin
+$ createdb -T template_postgis -U postgres geoadmin
 }}}
  * You can now use this template for any future !GeoDjango projects.
 
