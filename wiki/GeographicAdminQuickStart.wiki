@@ -215,6 +215,15 @@ Saved: Ghana
 [...]
 }}}
 
+ * If you get error like `ImportError: cannot import name mapping`, then it either means you have not properly installed GDAL or GeoDjango cannot find the libgdal library using `ctypes.util.find_library`. See http://geodjango.org/docs/install.html#id20 for more details on installation help.
+{{{
+$ python load_data.py 
+Traceback (most recent call last):
+  File "load_data.py", line 16, in <module>
+    from django.contrib.gis.utils import mapping, LayerMapping, add_postgis_srs
+ImportError: cannot import name mapping
+}}}
+
 === Step 9   |  View your Project with Data ===
 
 Run the server again and enjoy testing out the Admin and Databrowse:
