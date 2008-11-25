@@ -253,3 +253,7 @@ $ python manage.py runserver
 *Q*: I'm on Windows and getting an Error like: "the ordinal 2254 could not be located" in libeay32.dll, when running the HAS_GDAL tests after installation. Subsequent attempts to run the tests result in "HAS_GDAL" = false.
 
 *A*: You've got a problem with your libraries that relate to libeay32.dll and this is likely not just a !GeoDjango problem. Try installing Win32 OpenSSL to fix the problem of different libeay32.dll versions on your system.
+
+*Q*: I've loaded up this project and the first country I viewed in the Admin does not work. I tried clicking on Afghanistan at this url:  http://localhost:8000/admin/world/worldborders/31/ as simply got a blank blue map with a mysterious dot in the middle that says 'North Pole'. WTF?
+
+*A*: You must be using Safari which has a bug in it's poor regex parser. Load it up in Firefox and you should get a vector layer of Afghanistan rather than the middle of the south Atlantic ocean. :)
