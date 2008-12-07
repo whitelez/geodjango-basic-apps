@@ -608,3 +608,31 @@ var wards = new OpenLayers.Layer.WMS("Wards",
 
     map.addLayers([countries, wards, kml]);
 }}}
+
+
+
+=== APPENDIX B:     OS X INSTALL ===
+
+William Kyngesburye provides a number of geo-related binary packages that can get you most of the way to having Django working and installed without compiling anything from source.
+
+From http://www.kyngchaos.com/wiki/software:frameworks : 
+
+ * GEOS Framework
+ * Proj4 Framework
+ * GDAL Framework
+
+From http://www.kyngchaos.com/wiki/doku.php?id=software:postgres :
+ * Postgres
+ * PostGIS
+
+After you have installed each of these, you'll need the psycopg2 bindings. I could not find a working version of these for OS X, so I did:
+  
+  sudo su
+  PATH="$PATH:/usr/local/pgsql/bin" python easy_install psycopg2
+
+This requires the OS X Developer tools to be installed.
+
+Then, just download and install Django itself, and you're all set. If you get a complaint about GEOS_LIBRARY_PATH not being set, add the following to your settings file:
+
+GEOS_LIBRARY_PATH="/Library/Frameworks/GEOS.framework/unix/lib/libgeos_c.dylib"
+
