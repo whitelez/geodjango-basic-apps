@@ -30,3 +30,17 @@ layer = LayerMapping(WorldBorders,
                       encoding='iso-8859-1')
                     
 layer.save(verbose=True,strict=True,progress=True)
+
+
+print 'Fixing invalid polygons...'
+num = len(WorldBorders.objects.extra(where=['NOT ST_IsValid(geometry)']))
+for item in WorldBorders.objects.extra(where=['NOT ST_IsValid(geometry)']):
+    corrected = item.geometry.buffer(0)
+    item.geometry = corrected
+    item.save()
+
+print '....'
+num = len(WorldBorders.objects.extra(where=['NOT ST_IsValid(geometry)']))
+if num:
+  print '%s invalid polygons remain' % num
+  print WorldBorders.objects.extra(where=['NOT ST_IsValid(geometry)'])
