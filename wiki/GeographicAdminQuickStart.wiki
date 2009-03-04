@@ -103,11 +103,12 @@ $ psql -d template_postgis -U postgres -f /usr/share/spatial_ref_sys.sql
 $ ldconfig # Then restart PostgreSQL
 }}}
 
+ * You can now use this template for any future !GeoDjango projects.
+
  b. Create a postgis enabled database called geoadmin from the template:
 {{{
 $ createdb -T template_postgis -U postgres geoadmin
 }}}
- * You can now use this template for any future !GeoDjango projects.
 
 === Step 4  |  Check your projections ===
 
