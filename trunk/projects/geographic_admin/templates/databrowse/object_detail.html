@@ -113,6 +113,9 @@ Select Feature to see geometry:<br />
        vectors.addFeatures([features]);
        map.addLayer(vectors);
        map.zoomToExtent(features.geometry.getBounds());
+       if (map.getZoom() > 13) {
+        map.zoomTo(13);
+       }
        map.getControlsByClass('OpenLayers.Control.Navigation')[0].disableZoomWheel();
        var select_options = {
             hover: false,
