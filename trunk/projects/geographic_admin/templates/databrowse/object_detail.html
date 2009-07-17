@@ -1,8 +1,7 @@
 {% extends "databrowse/base_site.html" %}
 
 {% block extrahead %}
-     <script src="http://openlayers.org/api/2.6/OpenLayers.js"></script>
-     <script src="http://openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+     <script src="http://openlayers.org/api/OpenLayers.js"></script>
      <style type="text/css">
              #output { width: 100%; height: 300px}
     </style>
@@ -103,7 +102,7 @@ Select Feature to see geometry:<br />
            'maxExtent' : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508)
        }
        map = new OpenLayers.Map( 'map', options );
-       layer = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap (Mapnik)");
+       layer = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
        map.addLayer(layer);
        map.addControl(new OpenLayers.Control.MousePosition());
        vectors = new OpenLayers.Layer.Vector("Vector Layer");
