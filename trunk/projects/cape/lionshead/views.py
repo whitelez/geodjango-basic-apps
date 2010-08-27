@@ -13,5 +13,5 @@ def map_page(request):
 
 def ward(request, id):
     ward = get_object_or_404(Ward, pk=id)
-    interesting_points = InterestingLocation.objects.filter(geometry__intersects=(ward.geometry,))
+    interesting_points = InterestingLocation.objects.filter(geometry__intersects=ward.geometry)
     return render_to_response("ward.html", { 'ward': ward, 'interesting_points': interesting_points })
