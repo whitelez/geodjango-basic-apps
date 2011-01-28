@@ -6,7 +6,7 @@ Getting started with the Geographic Admin Project
 
 This [http://code.google.com/p/geodjango-basic-apps/source/browse/trunk/projects/geographic_admin Download] provides a sample project called 'geographic_admin' with an application called 'world'.
 
-The project code shows the minimal code needed to spatially enable the the Admin and Databrowse contrib applications with an !OpenLayers map interface and !OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile from [http://www.thematicmapping.com Thematic Mapping Blog] in WGS 84 projection (EPSG:4326).
+The project code shows the minimal code needed to spatially enable the the Admin and Databrowse contrib applications with an !OpenLayers map interface and !OpenStreetMap basedata in the Google Mercator Projection (EPSG:900913), utilizing a world borders shapefile from [http://www.thematicmapping.org Thematic Mapping Blog] in WGS 84 projection (EPSG:4326).
 
  * This project should be a useful place to start if you are familiar with Django but new to !GeoDjango and GIS/mapping ideas. It should also be useful to folks familiar with mapping but new to web development and not afraid to dive into some python code. With just a few settings tweaks to your django configuration file for your database user and password you should be able to get up and running.
 
