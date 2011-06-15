@@ -25,6 +25,17 @@ DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
+
+# django 1.2 compatible database settings
+DATABASES = {
+    'default': {
+        'NAME': DATABASE_NAME, # add in local settings
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD
+    }
+}
+
 # Not used at this point but you'll need it here if you 
 # want to enable a google maps baselayer within your
 # OpenLayers maps
@@ -49,8 +60,8 @@ ADMIN_MEDIA_PREFIX = '/admin_media/'
 SECRET_KEY = '2f!vq4!f)u#g-sk7_=z+i0e(o0o&hue5khxbdkdx$f%hvpb^vd'
 
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
