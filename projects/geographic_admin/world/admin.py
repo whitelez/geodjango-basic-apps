@@ -11,7 +11,7 @@ from django.contrib import admin
 
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
-from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.gis.admin import OSMGeoAdmin, GeoModelAdmin
 
 # Note, another simplier manager that does not reproject the data on OpenStreetMap is available
 # with from `django.contrib.gis.admin import GeoModelAdmin`
@@ -42,8 +42,10 @@ class WorldBordersAdmin(OSMGeoAdmin):
     
     """
     # Standard Django Admin Options
-    list_display = ('name','pop2005','region','subregion',)
+    list_display = ('name','pop2005','region','subregion','geometry',)
+    list_editable = ('geometry',)
     search_fields = ('name',)
+    list_per_page = 4
     ordering = ('name',)
     list_filter = ('region','subregion',)
     save_as = True
@@ -85,7 +87,7 @@ class WorldBordersAdmin(OSMGeoAdmin):
     #layerswitcher = True
     scrollable = False
     #admin_media_prefix = settings.ADMIN_MEDIA_PREFIX
-    map_width = 700
+    map_width = 400
     map_height = 325
     #map_srid = 4326
     #map_template = 'gis/admin/openlayers.html'
